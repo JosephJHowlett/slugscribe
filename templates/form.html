@@ -1,12 +1,25 @@
 <html>   
 <head>   
-    <title>upload the file : GFG</title>   
+    <title>SlugScribe</title>   
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
 </head>   
 <body>   
+     <img src="static/images/fiat-slug.png" alt="Paris" class="center"> 
+    <h1 id="logo"><span>Slug</span>Scribe</h1>
+      <div id="description">Transcribe any audio file!</div>
     <form action = "/success" method = "post" enctype="multipart/form-data">   
         <input type="file" name="file" />   
-        <input type = "submit" value="Upload">   
+        <input type = "submit" value="Transcribe">   
     </form>   
+    <p> </p>
+    <p style="bottom: 50px">{{ body if body is defined}}</p>
 </body>   
 </html>
 

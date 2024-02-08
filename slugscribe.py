@@ -14,9 +14,8 @@ def success():
         f = request.files['file'] 
         f.save(f.filename)   
         return render_template(
-            "acknowledge.html",
-            name=f.filename,
-            text=transcribe_file(f.filename)
+            "form.html",
+            body=transcribe_file(f.filename)
         )
 
 def transcribe_file(fname):
