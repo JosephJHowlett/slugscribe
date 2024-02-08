@@ -18,8 +18,10 @@
         <input type="file" name="file" />   
         <input type = "submit" value="Transcribe">   
     </form>   
-    <p> </p>
-    <p style="bottom: 50px">{{ body if body is defined}}</p>
+	{% if text is defined %}
+    <textarea cols='60' rows='8'>{{text}}</textarea>
+     {% endif %}
+
 </body>   
 </html>
 

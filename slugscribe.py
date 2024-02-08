@@ -6,7 +6,7 @@ app = Flask(__name__)
   
 @app.route('/')   
 def main():   
-    return render_template("form.html")   
+    return render_template("form.html")
   
 @app.route('/success', methods = ['POST'])   
 def success():   
@@ -15,7 +15,7 @@ def success():
         f.save(f.filename)   
         return render_template(
             "form.html",
-            body=transcribe_file(f.filename)
+            text=transcribe_file(f.filename),
         )
 
 def transcribe_file(fname):
@@ -23,9 +23,10 @@ def transcribe_file(fname):
     audio_file= open(fname, "rb")
     transcript = client.audio.transcriptions.create(
       model="whisper-1", 
-      file=audio_file
+      file=audio_file,
+      response_format='vtt'
     )
-    return transcript.text
+    return transcript
   
 if __name__ == '__main__':   
     app.run(debug=True)
