@@ -20,9 +20,13 @@ def success():
         )
 
 def transcribe_file(fname):
-    model = whisper.load_model("base")
-    result = model.transcribe(fname, verbose=True)
-    return result["text"]
+    client = OpenAI()
+    audio_file= open(fname, "rb")
+    transcript = client.audio.transcriptions.create(
+      model="whisper-1", 
+      file=audio_file
+    )
+    return transcript.text
   
 if __name__ == '__main__':   
     app.run(debug=True)
