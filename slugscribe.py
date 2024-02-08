@@ -1,7 +1,7 @@
 from distutils.log import debug 
 from fileinput import filename 
 from flask import *  
-import whisper
+from openai import OpenAI
 app = Flask(__name__)   
   
 @app.route('/')   
