@@ -21,15 +21,15 @@ def success():
         f.save(f.filename)   
         print(os.path.exists(f.filename))
         print('\n\n')
-        text = q.enqueue(transcribe_file, f.filename)
+        audio_file = open(f.filename, "rb")
+        text = q.enqueue(audio_file, f.filename)
         return render_template(
             "form.html",
             text=text,
         )
 
-def transcribe_file(fname):
+def transcribe_file(audio_file):
     client = OpenAI()
-    audio_file= open(fname, "rb")
     transcript = client.audio.transcriptions.create(
       model="whisper-1", 
       file=audio_file,
